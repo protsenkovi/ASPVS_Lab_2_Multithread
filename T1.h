@@ -13,5 +13,5 @@
 
 namespace M_thread {
 	pthread_attr_t thread_T1_init();
-	void* thread_T1(void* arg);
+	void* thread_T1(void** arg);
 }

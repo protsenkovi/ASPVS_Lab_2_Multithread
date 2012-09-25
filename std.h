@@ -8,6 +8,8 @@
 #ifndef STD_H_
 #define STD_H_
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <cstdlib>
 #include <iostream>
 #include <pthread.h>
