@@ -24,7 +24,6 @@ namespace M_thread {
 		cur_proc = this_proc + 1;
 		kill(getpid(), SIGUSR1);
 		pthread_mutex_unlock(&mutex_cond_proc);
-
 		return 0;
 	}
 }

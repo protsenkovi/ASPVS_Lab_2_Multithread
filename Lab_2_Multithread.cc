@@ -15,6 +15,7 @@ printf("Value %s\n", (char*)(*(int*)((int)arg + 4)));*/
 
 void handler(int signo) {
 	printf("Buffer: %s", M_thread::buf);
+	exit(EXIT_SUCCESS);
 }
 
 int main(int argc, char *argv[]) {
@@ -44,9 +45,16 @@ int main(int argc, char *argv[]) {
 	pthread_create(NULL, &attr_T1, &M_thread::thread_T1, (void*)(arg_1));
 	pthread_create(NULL, &attr_T2, &M_thread::thread_T2, (void*)(arg_2));
 
+	// All processes would stop at barrier. M would write to buf first
+	// before barrier.
+	// Var cur_proc would be switched to next process - THREAD_1.
+	// Each thread would lock mutex associated with con_var and cur_proc
+	// and check on signal of cond_var if it his turn.
+	// After completing T1 would switch cur_proc to next process - THREAD_2.
 	sprintf(M_thread::buf, "Main started\n");
-	M_thread::cur_proc = 1;
+	M_thread::cur_proc = M_thread::THREAD_1;
 	pthread_barrier_wait(&M_thread::barrier_start);
+	// M is waiting for SIGUSR1, from T2. Exit point from program is in handler.
 	while(1) {
 		pause();
 	}
