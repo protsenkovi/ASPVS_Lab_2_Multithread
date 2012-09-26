@@ -15,7 +15,7 @@ printf("Value %s\n", (char*)(*(int*)((int)arg + 4)));*/
 
 void handler(int signo) {
 	printf("Buffer: %s", M_thread::buf);
-	exit(EXIT_SUCCESS);
+	//exit(EXIT_SUCCESS);
 }
 
 int main(int argc, char *argv[]) {
@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
 	int *arg_2 = (int*)malloc(2*sizeof(int));
 	M_thread::buf = (char*)malloc(30*sizeof(char));
 
+	// T1 - DETACHED. T2 - JOINABLE. T1 waits T2 terminated.
 	pthread_attr_t attr_T1 = M_thread::thread_T1_init();
 	pthread_attr_t attr_T2 = M_thread::thread_T2_init();
 	struct sigaction act;

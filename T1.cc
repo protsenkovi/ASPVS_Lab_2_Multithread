@@ -24,6 +24,13 @@ namespace M_thread {
 		cur_proc = this_proc + 1;
 		pthread_cond_signal(&cond_proc);
 		pthread_mutex_unlock(&mutex_cond_proc);
+
+		pthread_mutex_lock(&mutex_cond_proc);
+		while(cur_proc != THREAD_2 + 1) {
+			pthread_cond_wait(&cond_proc, &mutex_cond_proc);
+		}
+		pthread_mutex_unlock(&mutex_cond_proc);
+		std::cout << "T1 terminated" << std::endl;
 		return 0;
 	}
 }

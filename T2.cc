@@ -22,8 +22,10 @@ namespace M_thread {
 		}
 		strcat(buf, "Thread#2 written down\n");
 		cur_proc = this_proc + 1;
+		pthread_cond_signal(&cond_proc);
 		kill(getpid(), SIGUSR1);
 		pthread_mutex_unlock(&mutex_cond_proc);
+		std::cout << "T2 terminated" << std::endl;
 		return 0;
 	}
 }
