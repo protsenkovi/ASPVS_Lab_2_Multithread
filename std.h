@@ -9,10 +9,13 @@
 #define STD_H_
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> //std::cout
 #include <cstdlib>
 #include <iostream>
-#include <pthread.h>
-#include <string.h>
+#include <pthread.h>//barrier
+#include <string.h> //strcat
+#include <signal.h> //kill
+#include <process.h>//getpid()
+#include <unistd.h> //pause()
 
 #endif /* STD_H_ */
