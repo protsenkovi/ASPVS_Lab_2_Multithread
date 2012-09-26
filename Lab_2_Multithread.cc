@@ -15,7 +15,7 @@ printf("Value %s\n", (char*)(*(int*)((int)arg + 4)));*/
 
 void handler(int signo) {
 	printf("Buffer: %s", M_thread::buf);
-	//exit(EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }
 
 int main(int argc, char *argv[]) {
