@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 	int *arg_2 = (int*)malloc(2*sizeof(int));
 	M_thread::buf = (char*)malloc(30*sizeof(char));
 
-	// T1 - DETACHED. T2 - JOINABLE. T1 waits T2 terminated.
+	// T1 - DETACHED. T2 - DETACHED. T1 waits T2 terminated via cond_var until ==3.
 	pthread_attr_t attr_T1 = M_thread::thread_T1_init();
 	pthread_attr_t attr_T2 = M_thread::thread_T2_init();
 	struct sigaction act;
